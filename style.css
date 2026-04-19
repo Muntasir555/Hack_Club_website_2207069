@@ -72,9 +72,7 @@ img {
     display: block;
 }
 
-/* ==========================================================================
-   Utility Classes & Components
-   ========================================================================== */
+
 .text-gradient {
     background: linear-gradient(135deg, var(--clr-primary-light), var(--clr-accent), var(--clr-cyan));
     -webkit-background-clip: text;
