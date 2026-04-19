@@ -1,0 +1,110 @@
+@charset "UTF-8";
+
+
+:root {
+    /* Colors */
+    --clr-bg: #030712;         
+    --clr-bg-surfaces: #111827;
+    --clr-text-main: #f9fafb;
+    --clr-text-muted: #9ca3af;
+    
+    /* Brand Accents */
+    --clr-primary-light: #60a5fa;
+    --clr-primary: #3b82f6;    
+    --clr-primary-dark: #1d4ed8;
+    
+    --clr-accent: #8b5cf6;     
+    --clr-cyan: #22d3ee;       
+    
+   
+    --max-width: 1200px;
+    --nav-height: 80px;
+    --border-radius-sm: 8px;
+    --border-radius-md: 16px;
+    --border-radius-lg: 24px;
+    
+    /* Glass / Borders */
+    --glass-bg: rgba(17, 24, 39, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+
+body {
+    background-color: var(--clr-bg);
+    color: var(--clr-text-main);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, .outfit-font {
+    font-family: 'Outfit', sans-serif;
+    color: var(--clr-text-main);
+    line-height: 1.2;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition-fast);
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* ==========================================================================
+   Utility Classes & Components
+   ========================================================================== */
+.text-gradient {
+    background: linear-gradient(135deg, var(--clr-primary-light), var(--clr-accent), var(--clr-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Background Animated Blobs */
+.bg-blur {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(140px);
+    z-index: -1;
+    opacity: 0.4;
+    animation: floatBlob 20s infinite alternate ease-in-out;
+}
+
+.bg-blur-1 {
+    width: 600px;
+    height: 600px;
+    background: var(--clr-accent);
+    top: -200px;
+    right: -100px;
+}
+
+.bg-blur-2 {
+    width: 500px;
+    height: 500px;
+    background: var(--clr-primary);
+    bottom: -150px;
+    left: -150px;
+    animation-delay: -5s;
+}
