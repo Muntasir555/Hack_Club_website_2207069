@@ -106,3 +106,40 @@ img {
     left: -150px;
     animation-delay: -5s;
 }
+
+@keyframes floatBlob {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-50px, 50px) scale(1.1); }
+    100% { transform: translate(50px, -50px) scale(0.9); }
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 1.8rem;
+    font-weight: 600;
+    border-radius: 50px; /* Pill shape */
+    cursor: pointer;
+    font-family: 'Outfit', sans-serif;
+    transition: var(--transition-smooth);
+    border: none;
+    outline: none;
+    font-size: 1rem;
+}
+
+.btn-sm {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+}
+
+.btn-lg {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--clr-primary), var(--clr-accent));
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+}
