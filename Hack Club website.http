@@ -1,0 +1,6 @@
+@Hack_Club_website_HostAddress = http://localhost:5202
+
+GET {{Hack_Club_website_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
