@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events & Notices | HAC KUET</title>
+    <!-- Modern Typography: Inter & Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+    <!-- Animated background layers -->
+    <div class="bg-blur bg-blur-1"></div>
+    <div class="bg-blur bg-blur-2"></div>
+    
+    <!-- Navigation -->
+    <header class="navbar">
+        <a href="index.html" class="logo">
+           <span class="logo-accent">HAC</span> KUET
+        </a>
+        <nav class="nav-links">
+            <a href="index.html#about" class="nav-item">About</a>
+            <a href="index.html#projects" class="nav-item">Projects</a>
+            <a href="events.html" class="nav-item">Events</a>
+            <a href="team.html" class="nav-item">Team</a>
+        </nav>
+        <div class="nav-action" style="display: flex; gap: 0.5rem;">
+            <a href="login.html" class="btn btn-outline btn-sm" style="padding: 0.5rem 1rem;">Member Login</a>
+            <a href="login.html?role=admin" class="btn btn-outline btn-sm" style="padding: 0.5rem 1rem;">Admin Login</a>
+            <a href="join.html" class="btn btn-primary btn-sm">Join Us</a>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="section pt-10" style="min-height: 70vh;">
+            <div class="section-badge">NOTICE BOARD</div>
+            <h1 class="hero-title" style="font-size: 3rem;">Events & <span class="text-gradient">Announcements</span></h1>
+            <p class="hero-subtitle mb-8" style="max-width: 600px; margin-left: auto; margin-right: auto; text-align: center;">
+                Stay updated with the latest workshops, tech talks, and general notices from the Hardware Acceleration Club.
+            </p>
+
+            <div id="publicNoticesList" class="cards-grid" style="grid-template-columns: 1fr; max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem;">
+                <!-- Dynamically populated by JS -->
+                <div style="text-align: center; color: #888; padding: 2rem;">Loading notices...</div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+                   <span class="logo-accent">HAC</span> KUET
+                </a>
+                <p>Empowering the next generation of hardware engineers.</p>
+            </div>
+            <div class="footer-links">
+                <div class="link-column">
+                    <h4>Navigate</h4>
+                    <a href="index.html#hero">Home</a>
+                    <a href="index.html#about">About</a>
+                    <a href="index.html#projects">Projects</a>
+                </div>
+                <div class="link-column">
+                    <h4>Social</h4>
+                    <a href="#">Facebook</a>
+                    <a href="#">LinkedIn</a>
+                    <a href="#">GitHub</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Hardware Acceleration Club KUET. Built with passion.</p>
+        </div>
+    </footer>
+    <script src="events.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>

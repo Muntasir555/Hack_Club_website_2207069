@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | HAC KUET</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <div class="bg-blur bg-blur-1"></div>
+    <div class="bg-blur bg-blur-2"></div>
+    
+    <header class="navbar">
+        <a href="index.html" class="logo"><span class="logo-accent">HAC</span> KUET</a>
+        <nav class="nav-links">
+            <a href="#" id="adminLink" class="nav-item" style="display: none;">Admin Panel</a>
+            <a href="#" id="logoutBtn" class="nav-item">Logout</a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <section class="section pt-10">
+            <div class="dashboard-header" style="display: flex; align-items: center; gap: 2rem; margin-bottom: 2rem;">
+                <label for="profilePicInput" class="profile-avatar-container">
+                    <img id="profileAvatar" src="images/default-avatar.svg" alt="Profile Picture" class="profile-avatar" />
+                    <div class="profile-avatar-overlay">
+                        <span>Upload</span>
+                    </div>
+                </label>
+                <input type="file" id="profilePicInput" accept="image/png, image/jpeg, image/jpg, image/webp" style="display: none;" />
+                <div>
+                    <h1 class="hero-title" style="font-size: 3rem; margin-bottom: 0;">Welcome, <span id="userName" class="text-gradient"></span></h1>
+                    <p class="hero-subtitle" style="margin-bottom: 0; margin-top: 0.5rem;">Student ID: <span id="userStudentId"></span> | Role: <span id="userRole"></span></p>
+                </div>
+            </div>
+
+            <div class="glass-container mt-4 info-grid">
+                <div class="info-card">
+                    <h3>Department</h3>
+                    <p id="userDept" class="body-large">-</p>
+                </div>
+                <div class="info-card">
+                    <h3>Year</h3>
+                    <p id="userYear" class="body-large">-</p>
+                </div>
+                <div class="info-card">
+                    <h3>Semester</h3>
+                    <p id="userSem" class="body-large">-</p>
+                </div>
+            </div>
+
+            <h2 class="section-title mt-5">Your <span class="text-gradient">Contributions</span></h2>
+            <div id="contributionsList" class="cards-grid">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+    </main>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

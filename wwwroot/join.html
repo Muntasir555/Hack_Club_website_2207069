@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join | HAC KUET</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="join.css">
+</head>
+<body>
+    <div class="bg-blur bg-blur-1"></div>
+    <div class="bg-blur bg-blur-2"></div>
+    
+    <header class="navbar">
+        <a href="index.html" class="logo"><span class="logo-accent">HAC</span> KUET</a>
+        <nav class="nav-links">
+            <a href="login.html" class="nav-item">Login</a>
+        </nav>
+    </header>
+
+    <main class="main-content center-form">
+        <div class="glass-container form-container">
+            <h2>Join the <span class="text-gradient">Club</span></h2>
+            <p>Fill out the form below to request membership.</p>
+            
+            <form id="joinForm">
+                <div class="form-group">
+                    <label>Student ID</label>
+                    <input type="text" id="studentId" required placeholder="e.g. 2107000">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" required placeholder="Enter password">
+                </div>
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="fullName" required placeholder="e.g. John Doe">
+                </div>
+                <div class="form-group">
+                    <label>Department</label>
+                    <input type="text" id="department" required placeholder="e.g. CSE">
+                </div>
+                <div class="form-group">
+                    <label>Year</label>
+                    <input type="text" id="year" required placeholder="e.g. 3rd">
+                </div>
+                <div class="form-group">
+                    <label>Semester</label>
+                    <input type="text" id="semester" required placeholder="e.g. 5th">
+                </div>
+                
+                <div id="message" class="message"></div>
+                
+                <button type="submit" class="btn btn-primary w-100">Submit Request</button>
+            </form>
+        </div>
+    </main>
+
+    <script src="join.js"></script>
+</body>
+</html>
