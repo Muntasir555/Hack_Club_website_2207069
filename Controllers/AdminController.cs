@@ -69,5 +69,35 @@ namespace HackClub.Controllers
 
             return Ok(new { message = "User removed successfully" });
         }
+
+        [HttpPost("notices")]
+        public async Task<IActionResult> CreateNotice([FromBody] Models.Notice notice)
+        {
+            if (string.IsNullOrWhiteSpace(notice.Title) || string.IsNullOrWhiteSpace(notice.Content))
+            {
+                return BadRequest(new { message = "Title and Content are required" });
+            }
+
+            notice.DatePosted = DateTime.UtcNow;
+            _context.Notices.Add(notice);
+            await _context.SaveChangesAsync();
+
+            return Ok(notice);
+        }
+
+        [HttpDelete("notices/{id}")]
+        public async Task<IActionResult> DeleteNotice(int id)
+        {
+            var notice = await _context.Notices.FindAsync(id);
+            if (notice == null)
+            {
+                return NotFound(new { message = "Notice not found" });
+            }
+
+            _context.Notices.Remove(notice);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Notice deleted successfully" });
+        }
     }
 }

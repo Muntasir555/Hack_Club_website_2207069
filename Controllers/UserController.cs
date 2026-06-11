@@ -3,7 +3,8 @@ using HackClub.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.AspNetCore.Http;
+using System.IO;
 namespace HackClub.Controllers
 {
     [Route("api/[controller]")]
@@ -47,8 +48,59 @@ namespace HackClub.Controllers
                 user.Year,
                 user.Semester,
                 user.Role,
+                user.ProfilePicturePath,
                 Contributions = contributions
             });
+        }
+
+        [HttpPost("upload-profile-picture")]
+        public async Task<IActionResult> UploadProfilePicture(IFormFile file)
+        {
+            var userIdStr = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userIdStr == null) return Unauthorized();
+            
+            var userId = int.Parse(userIdStr);
+            var user = await _context.Users.FindAsync(userId);
+            if (user == null) return NotFound();
+
+            if (file == null || file.Length == 0) return BadRequest("No file uploaded.");
+
+            var extension = Path.GetExtension(file.FileName).ToLowerInvariant();
+            var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif", ".webp" };
+            if (!allowedExtensions.Contains(extension))
+            {
+                return BadRequest("Invalid image format.");
+            }
+
+            if (file.Length > 5 * 1024 * 1024) return BadRequest("File size exceeds 5MB limit.");
+
+            var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "profiles");
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+
+            var fileName = $"{userId}_{Guid.NewGuid()}{extension}";
+            var filePath = Path.Combine(folderPath, fileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+
+            if (!string.IsNullOrEmpty(user.ProfilePicturePath))
+            {
+                var oldFilePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", user.ProfilePicturePath.TrimStart('/'));
+                if (System.IO.File.Exists(oldFilePath))
+                {
+                    System.IO.File.Delete(oldFilePath);
+                }
+            }
+
+            user.ProfilePicturePath = $"/images/profiles/{fileName}";
+            await _context.SaveChangesAsync();
+
+            return Ok(new { profilePicturePath = user.ProfilePicturePath });
         }
     }
 }

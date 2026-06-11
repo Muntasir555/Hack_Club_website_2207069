@@ -10,5 +10,6 @@ namespace HackClub.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<Contribution> Contributions { get; set; }
+        public DbSet<Notice> Notices { get; set; }
     }
 }
