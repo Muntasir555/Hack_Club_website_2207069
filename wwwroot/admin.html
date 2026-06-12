@@ -28,6 +28,7 @@
                 <button class="tab-btn" data-tab="pending">Pending Approvals</button>
                 <button class="tab-btn" data-tab="members">Club Members</button>
                 <button class="tab-btn" data-tab="notices">Notice Board</button>
+                <button class="tab-btn" data-tab="security">Security</button>
             </div>
 
             <div id="usersContent" class="glass-container mt-4 p-4 tab-content active">
@@ -35,6 +36,7 @@
                     <thead>
                         <tr>
                             <th>ID</th>
+                            <th>Photo</th>
                             <th>Student ID</th>
                             <th>Name</th>
                             <th>Status</th>
@@ -60,6 +62,25 @@
                 <div id="noticesList" style="display: flex; flex-direction: column; gap: 1rem;">
                     <!-- Populated by JS -->
                 </div>
+            </div>
+
+            <div id="securityContent" class="glass-container mt-4 p-4 tab-content" style="display: none;">
+                <h2 style="margin-bottom: 1rem; font-size: 1.5rem;">Change Admin Password</h2>
+                <form id="adminChangePasswordForm" style="display: flex; flex-direction: column; gap: 1rem; max-width: 600px;">
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <label for="adminCurrentPassword">Current Password</label>
+                        <input type="password" id="adminCurrentPassword" required style="padding: 0.8rem; border-radius: 4px; border: none; background: rgba(255,255,255,0.1); color: #fff;">
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <label for="adminNewPassword">New Password</label>
+                        <input type="password" id="adminNewPassword" required minlength="6" style="padding: 0.8rem; border-radius: 4px; border: none; background: rgba(255,255,255,0.1); color: #fff;">
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <label for="adminConfirmNewPassword">Confirm New Password</label>
+                        <input type="password" id="adminConfirmNewPassword" required minlength="6" style="padding: 0.8rem; border-radius: 4px; border: none; background: rgba(255,255,255,0.1); color: #fff;">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="align-self: flex-start; margin-top: 1rem;">Update Password</button>
+                </form>
             </div>
         </section>
     </main>

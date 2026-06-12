@@ -54,7 +54,7 @@ namespace HackClub.Controllers
         }
 
         [HttpPost("upload-profile-picture")]
-        public async Task<IActionResult> UploadProfilePicture(IFormFile file)
+        public async Task<IActionResult> UploadProfilePicture([FromForm] IFormFile file)
         {
             var userIdStr = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             if (userIdStr == null) return Unauthorized();
@@ -101,6 +101,27 @@ namespace HackClub.Controllers
             await _context.SaveChangesAsync();
 
             return Ok(new { profilePicturePath = user.ProfilePicturePath });
+        }
+
+        [HttpPost("change-password")]
+        public async Task<IActionResult> ChangePassword([FromBody] Models.ChangePasswordDto dto)
+        {
+            var userIdStr = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userIdStr == null) return Unauthorized();
+            
+            var userId = int.Parse(userIdStr);
+            var user = await _context.Users.FindAsync(userId);
+            if (user == null) return NotFound();
+
+            if (user.PasswordHash != dto.CurrentPassword)
+            {
+                return BadRequest(new { message = "Incorrect current password." });
+            }
+
+            user.PasswordHash = dto.NewPassword; // In a real app, hash this!
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Password updated successfully." });
         }
     }
 }

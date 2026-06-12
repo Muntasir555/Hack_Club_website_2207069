@@ -55,6 +55,25 @@
             <div id="contributionsList" class="cards-grid">
                 <!-- Populated by JS -->
             </div>
+
+            <h2 class="section-title mt-5">Security <span class="text-gradient">Settings</span></h2>
+            <div class="glass-container p-4" style="max-width: 600px;">
+                <form id="changePasswordForm" style="display: flex; flex-direction: column; gap: 1rem;">
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <label for="currentPassword">Current Password</label>
+                        <input type="password" id="currentPassword" required style="padding: 0.8rem; border-radius: 4px; border: none; background: rgba(255,255,255,0.1); color: #fff;">
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <label for="newPassword">New Password</label>
+                        <input type="password" id="newPassword" required minlength="6" style="padding: 0.8rem; border-radius: 4px; border: none; background: rgba(255,255,255,0.1); color: #fff;">
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <label for="confirmNewPassword">Confirm New Password</label>
+                        <input type="password" id="confirmNewPassword" required minlength="6" style="padding: 0.8rem; border-radius: 4px; border: none; background: rgba(255,255,255,0.1); color: #fff;">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="align-self: flex-start; margin-top: 1rem;">Update Password</button>
+                </form>
+            </div>
         </section>
     </main>
 

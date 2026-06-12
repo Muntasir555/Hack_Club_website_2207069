@@ -28,7 +28,8 @@ namespace HackClub.Controllers
                     u.Name,
                     u.Department,
                     u.Status,
-                    u.Role
+                    u.Role,
+                    u.ProfilePicturePath
                 })
                 .ToListAsync();
 

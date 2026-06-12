@@ -10,6 +10,7 @@ function setupTabs() {
     const tabBtns = document.querySelectorAll('.tab-btn');
     const usersContent = document.getElementById('usersContent');
     const noticesContent = document.getElementById('noticesContent');
+    const securityContent = document.getElementById('securityContent');
 
     tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -21,13 +22,17 @@ function setupTabs() {
             currentTab = btn.getAttribute('data-tab');
 
             // Handle content display
+            usersContent.style.display = 'none';
+            noticesContent.style.display = 'none';
+            securityContent.style.display = 'none';
+
             if (currentTab === 'notices') {
-                usersContent.style.display = 'none';
                 noticesContent.style.display = 'block';
                 loadNotices();
+            } else if (currentTab === 'security') {
+                securityContent.style.display = 'block';
             } else {
                 usersContent.style.display = 'block';
-                noticesContent.style.display = 'none';
                 renderUsers();
             }
         });
@@ -41,6 +46,42 @@ function setupTabs() {
             const title = document.getElementById('noticeTitle').value;
             const content = document.getElementById('noticeContent').value;
             await postNotice(title, content);
+        });
+    }
+
+    // Handle admin change password form
+    const adminChangePasswordForm = document.getElementById('adminChangePasswordForm');
+    if (adminChangePasswordForm) {
+        adminChangePasswordForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const currentPassword = document.getElementById('adminCurrentPassword').value;
+            const newPassword = document.getElementById('adminNewPassword').value;
+            const confirmNewPassword = document.getElementById('adminConfirmNewPassword').value;
+
+            if (newPassword !== confirmNewPassword) {
+                alert("New passwords do not match!");
+                return;
+            }
+
+            try {
+                const res = await fetch('/api/user/change-password', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ currentPassword, newPassword })
+                });
+
+                const data = await res.json();
+                if (res.ok) {
+                    alert("Password changed successfully!");
+                    adminChangePasswordForm.reset();
+                } else {
+                    alert(data.message || "Failed to change password.");
+                }
+            } catch (err) {
+                console.error('Error changing password:', err);
+                alert("An error occurred while changing your password.");
+            }
         });
     }
 }
@@ -86,8 +127,11 @@ function renderUsers() {
             actions += `<button class="action-btn btn-remove" onclick="removeUser(${user.id})">Remove</button>`;
         }
 
+        const avatarSrc = user.profilePicturePath ? user.profilePicturePath : 'images/default-avatar.svg';
+
         tr.innerHTML = `
             <td>${user.id}</td>
+            <td><img src="${avatarSrc}" alt="Avatar" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid var(--clr-primary);"></td>
             <td>${user.studentId}</td>
             <td>${user.name}</td>
             <td class="${user.status === 'Pending' ? 'status-pending' : 'status-approved'}">${user.status}</td>

@@ -82,3 +82,38 @@ document.getElementById('logoutBtn').addEventListener('click', async (e) => {
         console.error('Logout failed', err);
     }
 });
+
+const changePasswordForm = document.getElementById('changePasswordForm');
+if (changePasswordForm) {
+    changePasswordForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const currentPassword = document.getElementById('currentPassword').value;
+        const newPassword = document.getElementById('newPassword').value;
+        const confirmNewPassword = document.getElementById('confirmNewPassword').value;
+
+        if (newPassword !== confirmNewPassword) {
+            alert("New passwords do not match!");
+            return;
+        }
+
+        try {
+            const res = await fetch('/api/user/change-password', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ currentPassword, newPassword })
+            });
+
+            const data = await res.json();
+            if (res.ok) {
+                alert("Password changed successfully!");
+                changePasswordForm.reset();
+            } else {
+                alert(data.message || "Failed to change password.");
+            }
+        } catch (err) {
+            console.error('Error changing password:', err);
+            alert("An error occurred while changing your password.");
+        }
+    });
+}
