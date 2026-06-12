@@ -62,12 +62,31 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         const contributionsList = document.getElementById('contributionsList');
         if (user.contributions && user.contributions.length > 0) {
-            contributionsList.innerHTML = user.contributions.map(c => `
-                <div class="contribution-card">
-                    <h3>${c.projectTitle}</h3>
-                    <p>${c.details}</p>
+            contributionsList.innerHTML = user.contributions.map(c => {
+                let mediaHtml = '';
+                if (c.mediaPath) {
+                    const ext = c.mediaPath.split('.').pop().toLowerCase();
+                    if (['mp4', 'webm'].includes(ext)) {
+                        mediaHtml = `
+                        <div class="card-img video-thumbnail-container" onclick="openVideoModal('${c.mediaPath}')">
+                            <div class="video-play-icon">
+                                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            </div>
+                        </div>`;
+                    } else {
+                        mediaHtml = `<img src="${c.mediaPath}" alt="Project Media" class="card-img">`;
+                    }
+                }
+                return `
+                <div class="glass-card">
+                    ${mediaHtml}
+                    <div class="card-content">
+                        <h3 class="card-title">${c.projectTitle}</h3>
+                        <p class="card-desc">${c.projectDescription || c.details || ''}</p>
+                    </div>
                 </div>
-            `).join('');
+                `;
+            }).join('');
         } else {
             contributionsList.innerHTML = '<p>No contributions found.</p>';
         }
@@ -77,6 +96,35 @@ document.addEventListener('DOMContentLoaded', async () => {
         alert('An error occurred while loading the dashboard.');
     }
 });
+
+// Video Modal Logic
+window.openVideoModal = function(url) {
+    const modal = document.getElementById('videoModal');
+    const player = document.getElementById('modalVideoPlayer');
+    if (modal && player) {
+        player.src = url;
+        modal.classList.add('active');
+        player.play();
+    }
+};
+
+const closeVideoModalBtn = document.getElementById('closeVideoModal');
+const videoModal = document.getElementById('videoModal');
+if (closeVideoModalBtn && videoModal) {
+    closeVideoModalBtn.addEventListener('click', () => {
+        const player = document.getElementById('modalVideoPlayer');
+        if (player) player.pause();
+        videoModal.classList.remove('active');
+    });
+}
+window.addEventListener('click', (e) => {
+    if (e.target === videoModal) {
+        const player = document.getElementById('modalVideoPlayer');
+        if (player) player.pause();
+        videoModal.classList.remove('active');
+    }
+});
+
 
 document.getElementById('logoutBtn').addEventListener('click', async (e) => {
     e.preventDefault();

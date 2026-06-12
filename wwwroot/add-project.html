@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Project | HAC KUET</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="join.css"> <!-- Reuse form styles -->
+    <style>
+        .file-upload-wrapper {
+            position: relative;
+            width: 100%;
+            height: 150px;
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            cursor: pointer;
+            transition: border-color 0.3s;
+            overflow: hidden;
+            background: rgba(0,0,0,0.2);
+        }
+        .file-upload-wrapper:hover {
+            border-color: #00f0ff;
+        }
+        .file-upload-input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+        .file-upload-text {
+            color: #ccc;
+            font-size: 1rem;
+            margin-top: 10px;
+            text-align: center;
+        }
+        #mediaPreviewContainer {
+            width: 100%;
+            height: 100%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        #mediaPreviewContainer img, #mediaPreviewContainer video {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-blur bg-blur-1"></div>
+    <div class="bg-blur bg-blur-2"></div>
+    
+    <header class="navbar">
+        <a href="index.html" class="logo"><span class="logo-accent">HAC</span> KUET</a>
+        <nav class="nav-links">
+            <a href="dashboard.html" class="nav-item">Dashboard</a>
+        </nav>
+    </header>
+
+    <main class="main-content center-form" style="padding-top: 120px; padding-bottom: 60px; align-items: flex-start;">
+        <div class="glass-container form-container" style="max-width: 600px; width: 100%;">
+            <h2>Add <span class="text-gradient">Project</span></h2>
+            <p>Upload a new project or contribution.</p>
+            
+            <form id="addProjectForm" autocomplete="off">
+                <div class="form-group">
+                    <label>Project Title</label>
+                    <input type="text" id="projectTitle" required placeholder="e.g. Smart IoT Plant Monitor">
+                </div>
+                <div class="form-group">
+                    <label>Project Description</label>
+                    <textarea id="projectDescription" rows="4" placeholder="Describe the project..." required style="width: 100%; padding: 0.8rem; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.2); color: #fff;"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Project Media (Photo / Video)</label>
+                    <div class="file-upload-wrapper" id="fileUploadWrapper">
+                        <div id="uploadPrompt">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="17 8 12 3 7 8"></polyline>
+                                <line x1="12" y1="3" x2="12" y2="15"></line>
+                            </svg>
+                            <div class="file-upload-text" id="fileNameDisplay">Click to upload or drag & drop</div>
+                        </div>
+                        <div id="mediaPreviewContainer"></div>
+                        <input type="file" id="projectMedia" accept="image/*, video/mp4, video/webm" class="file-upload-input">
+                    </div>
+                </div>
+                
+                <div id="message" class="message"></div>
+                
+                <button type="submit" class="btn btn-primary w-100" id="submitBtn">Save Project</button>
+            </form>
+        </div>
+    </main>
+
+    <script src="add-project.js"></script>
+</body>
+</html>

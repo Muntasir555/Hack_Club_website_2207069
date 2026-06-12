@@ -91,3 +91,45 @@
 .profile-avatar-container:hover .profile-avatar-overlay {
     opacity: 1;
 }
+
+/* Video Thumbnail Styling */
+.video-thumbnail-container {
+    position: relative;
+    cursor: pointer;
+    background-color: #111827;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-thumbnail-container:hover .video-play-icon {
+    transform: scale(1.1);
+    background-color: rgba(59, 130, 246, 0.9);
+}
+
+.video-play-icon {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-color: rgba(59, 130, 246, 0.7);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-fast);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.video-play-icon svg {
+    width: 30px;
+    height: 30px;
+    fill: #fff;
+    margin-left: 5px; /* Adjust triangle to appear optically centered */
+}
+
+/* Smaller Cards Grid for Contributions */
+.cards-grid.small-cards {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+

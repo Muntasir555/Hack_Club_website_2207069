@@ -36,7 +36,9 @@ namespace HackClub.Controllers
                 .Select(c => new
                 {
                     ProjectTitle = c.Project.Title,
-                    c.Details
+                    ProjectDescription = c.Project.Description,
+                    c.Details,
+                    MediaPath = c.Project.MediaPath
                 })
                 .ToListAsync();
 
