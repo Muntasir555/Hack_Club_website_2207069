@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard | HAC KUET</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="style.css?v=2">
+    <link rel="stylesheet" href="dashboard.css?v=2">
 </head>
 <body>
     <div class="bg-blur bg-blur-1"></div>
@@ -16,6 +16,7 @@
         <a href="index.html" class="logo"><span class="logo-accent">HAC</span> KUET</a>
         <nav class="nav-links">
             <a href="#" id="adminLink" class="nav-item" style="display: none;">Admin Panel</a>
+            <a href="#" id="memberSecurityBtn" class="nav-item" style="display: none;">Security</a>
             <a href="#" id="logoutBtn" class="nav-item">Logout</a>
         </nav>
     </header>
@@ -56,27 +57,31 @@
                 <!-- Populated by JS -->
             </div>
 
-            <h2 class="section-title mt-5">Security <span class="text-gradient">Settings</span></h2>
-            <div class="glass-container p-4" style="max-width: 600px;">
-                <form id="changePasswordForm" style="display: flex; flex-direction: column; gap: 1rem;">
-                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                        <label for="currentPassword">Current Password</label>
-                        <input type="password" id="currentPassword" required style="padding: 0.8rem; border-radius: 4px; border: none; background: rgba(255,255,255,0.1); color: #fff;">
-                    </div>
-                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                        <label for="newPassword">New Password</label>
-                        <input type="password" id="newPassword" required minlength="6" style="padding: 0.8rem; border-radius: 4px; border: none; background: rgba(255,255,255,0.1); color: #fff;">
-                    </div>
-                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                        <label for="confirmNewPassword">Confirm New Password</label>
-                        <input type="password" id="confirmNewPassword" required minlength="6" style="padding: 0.8rem; border-radius: 4px; border: none; background: rgba(255,255,255,0.1); color: #fff;">
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="align-self: flex-start; margin-top: 1rem;">Update Password</button>
-                </form>
+            <!-- Modal Overlay -->
+            <div id="securityModal" class="modal-overlay">
+                <div class="modal-content">
+                    <button id="closeSecurityModal" class="modal-close">&times;</button>
+                    <h2 style="margin-bottom: 1.5rem; font-size: 1.8rem;">Security <span class="text-gradient">Settings</span></h2>
+                    <form id="changePasswordForm" autocomplete="off" style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                            <label for="currentPassword">Current Password</label>
+                            <input type="password" id="currentPassword" required style="padding: 0.8rem; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.2); color: #fff;">
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                            <label for="newPassword">New Password</label>
+                            <input type="password" id="newPassword" required minlength="6" style="padding: 0.8rem; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.2); color: #fff;">
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                            <label for="confirmNewPassword">Confirm New Password</label>
+                            <input type="password" id="confirmNewPassword" required minlength="6" style="padding: 0.8rem; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.2); color: #fff;">
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">Update Password</button>
+                    </form>
+                </div>
             </div>
         </section>
     </main>
 
-    <script src="dashboard.js"></script>
+    <script src="dashboard.js?v=2"></script>
 </body>
 </html>

@@ -53,6 +53,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             const adminLink = document.getElementById('adminLink');
             adminLink.style.display = 'inline-block';
             adminLink.href = 'admin.html';
+        } else {
+            const memberSecurityBtn = document.getElementById('memberSecurityBtn');
+            if (memberSecurityBtn) {
+                memberSecurityBtn.style.display = 'inline-block';
+            }
         }
 
         const contributionsList = document.getElementById('contributionsList');
@@ -108,6 +113,10 @@ if (changePasswordForm) {
             if (res.ok) {
                 alert("Password changed successfully!");
                 changePasswordForm.reset();
+                const securityModal = document.getElementById('securityModal');
+                if (securityModal) {
+                    securityModal.classList.remove('active');
+                }
             } else {
                 alert(data.message || "Failed to change password.");
             }
@@ -117,3 +126,28 @@ if (changePasswordForm) {
         }
     });
 }
+
+// Modal handling
+const memberSecurityBtn = document.getElementById('memberSecurityBtn');
+const securityModal = document.getElementById('securityModal');
+const closeSecurityModal = document.getElementById('closeSecurityModal');
+
+if (memberSecurityBtn && securityModal) {
+    memberSecurityBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        securityModal.classList.add('active');
+    });
+}
+
+if (closeSecurityModal && securityModal) {
+    closeSecurityModal.addEventListener('click', () => {
+        securityModal.classList.remove('active');
+    });
+}
+
+// Close modal if clicking outside of the content
+window.addEventListener('click', (e) => {
+    if (e.target === securityModal) {
+        securityModal.classList.remove('active');
+    }
+});
